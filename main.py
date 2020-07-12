@@ -22,7 +22,7 @@ def one_hot_labels(labels):
 def main():
     # image shape: N x H x W, pixel [0, 255]
     # label shape: N x 10
-    with np.load(r'C:\VS Code\homework\LeNet\mnist.npz', allow_pickle=True) as f:
+    with np.load(r'mnist.npz', allow_pickle=True) as f:
         x_train, y_train = f['x_train'], f['y_train']
         x_test, y_test = f['x_test'], f['y_test']
 
@@ -38,10 +38,8 @@ def main():
 
     net = LeNet()
     averagetime, _ = net.fit(x_train, y_train, x_test, y_test, epoches=10, batch_size=16, lr=1e-3)
-    accu = net.evaluate(x_test, labels=y_test)
-    print("final accuracy {}".format(accu))
+    accuracy = net.evaluate(x_test, labels=y_test)
+    print("final accuracy {}".format(accuracy))
     print(averagetime,'s')
 if __name__ == "__main__":
     main()
-
-
