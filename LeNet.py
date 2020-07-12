@@ -109,7 +109,6 @@ class Conv(object):
         self.pad = pad
         self.stride = stride
         self.kernel_size = kernel_size
-
     def init_weight(self):
         FN, FC, FH, FW = self.kernel_size
         std = np.sqrt(2 / (FN*FC*FH*FW))
@@ -117,12 +116,10 @@ class Conv(object):
         bias = np.random.normal(0, 0.01, (1, FN))
         self.kernel = kernel
         self.bias = bias
-
     def forward(self, inputs):
         self.inputs = inputs
         self.outputs = conv(self.inputs, self.kernel, self.bias, self.stride, self.pad)
         return self.outputs
-
     def backward(self, delta_in, lr):
         if len(delta_in.shape) < 4:
             delta_in = np.expand_dims(delta_in, axis=(2,3))
