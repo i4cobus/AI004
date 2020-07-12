@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import numpy as np
 import matplotlib.pyplot as plt
-from lenet import LeNet
+from LeNet import LeNet
 
 def normalize_image(images):
     ''' 对图像做归一化处理 '''
